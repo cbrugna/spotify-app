@@ -1,0 +1,12 @@
+.login {
+    display: grid;
+    place-items: center;
+    background-color: black;
+}
+
+.login > img {
+    width: 150px;
+    padding: 1%;
+    position: absolute;
+    top: 10%;
+}
