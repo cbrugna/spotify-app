@@ -1,17 +1,15 @@
 import React from 'react'
+import { accessUrl } from "./spotify";
 
 function Login() {
     return (
         <div className="login">
             <img src={require("./images/spotify-logo.png")} alt="spotify logo"></img>
-            <a className="btn btn-primary"
-             data-bs-toggle="collapse"
-             href="#collapseExample"
-             role="button"
-             aria-expanded="false"
-             aria-controls="collapseExample">
+            <a href={accessUrl}
+             className="btn btn-primary"
+             >
             Login with Spotify
-        </a>
+            </a>
         </div>
     )
 }
