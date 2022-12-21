@@ -4,7 +4,7 @@ export const initialState = {
     playlists: [],
     playing: false,
     item: null
-}
+};
 
 const reducer = (state, action) => {
     console.log(action);
@@ -16,10 +16,10 @@ const reducer = (state, action) => {
             return {
                 ...state, // Keep whatever is in the current state
                 user: action.user 
-            }
+            };
         default: 
             return state;
     }
-}
+};
 
 export default reducer;

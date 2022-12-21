@@ -7,8 +7,8 @@ import React,
 export const DataLayerContext = createContext();
 
 // This is what wraps App in index.js
-export const DataLayer = ({  inititalState, reducer, children }) => (
-    <DataLayerContext.Provider value={useReducer(reducer, inititalState)}>
+export const DataLayer = ({  initialState, reducer, children }) => (
+    <DataLayerContext.Provider value={useReducer(reducer, initialState)}>
         {children}
     </DataLayerContext.Provider>
 );

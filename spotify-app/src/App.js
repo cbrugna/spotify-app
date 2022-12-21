@@ -4,6 +4,7 @@ import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Player from './Player';
+import { useDataLayerValue } from './DataLayer';
 
 // Instance of obj responsible for interaction between Spotify and our app
 const spotify = new SpotifyWebApi();
@@ -11,6 +12,7 @@ const spotify = new SpotifyWebApi();
 function App() {
    
   const [token, setToken] = useState(null);
+  const [{ user }, dispatch] = useDataLayerValue(); // For interacting with the DataLayer *notice "dispatch"
 
   useEffect(() => {
     const hash = getTokenFromUrl();
@@ -24,12 +26,16 @@ function App() {
       // Giving access token to SpotifyWebApi
       spotify.setAccessToken(_token);
 
-      spotify.getMe().then(user => {
-        console.log("Person: ", user);
+      spotify.getMe().then((user) => {
+        dispatch({
+          type: 'SET_USER',
+          user: user,
+        });
       });
     }
   }, []);
   
+  console.log("USER: ", user);
   
   
   return (
