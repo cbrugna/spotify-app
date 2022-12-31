@@ -1,3 +1,5 @@
+import { ContactlessOutlined } from "@material-ui/icons";
+
 // Initial empty DataLayer slice
 export const initialState = {
     user: null,
@@ -22,6 +24,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 token: action.token,
+            };
+        case "SET_PLAYLISTS":
+            return {
+                ...state,
+                playlists: action.playlists,
             };
         default: 
             return state;
