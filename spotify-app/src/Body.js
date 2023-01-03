@@ -1,27 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { resolvePath } from 'react-router-dom'
 import "./Body.css"
 import { useDataLayerValue } from './DataLayer'
 import Header from './Header'
 import SongRow from './SongRow'
 
+
 function Body({ spotify, current_playlist_id }) {
 
-    const [{ discover_weekly, top_tracks }, dispatch] = useDataLayerValue();
-    console.log("API", spotify.getPlaylist(current_playlist_id));
-    const current_playlist = spotify.getPlaylist(current_playlist_id);
-    console.log("current_playlist", current_playlist);
-
-    spotify.getPlaylist(current_playlist_id).then((current_playlist) => {
-        console.log("Playlist object?", current_playlist);
-    });
+    const [ dispatch, ] = useDataLayerValue();
 
     return (
 
         <div className="body">
             <Header spotify={spotify} />
             <p>{current_playlist_id}</p>
-            
-
             
         </div>
 

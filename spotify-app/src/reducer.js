@@ -8,6 +8,7 @@ export const initialState = {
     top_tracks: null,
     discover_weekly: null,
     current_playlist: null,
+    current_playlist_tracks: null,
 };
 
 const reducer = (state, action) => {
@@ -45,6 +46,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 current_playlist: action.current_playlist,
+            }
+        case "SET_CURRENT_PLAYLIST_TRACKS":
+            return {
+                ...state,
+                current_playlist_tracks: action.current_playlist_tracks,
             }
         default: 
             return state;
