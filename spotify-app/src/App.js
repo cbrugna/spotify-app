@@ -49,8 +49,8 @@ function App() {
 
       spotify.getMyTopTracks().then((response) =>
         dispatch({
-          type: "SET_TOP_ARTISTS",
-          top_artists: response,
+          type: "SET_TOP_TRACKS",
+          top_tracks: response,
         })
       );
 
