@@ -7,8 +7,13 @@ import SongRow from './SongRow'
 function Body({ spotify, current_playlist_id }) {
 
     const [{ discover_weekly, top_tracks }, dispatch] = useDataLayerValue();
-    console.log("Discover weekly object", discover_weekly);
-    console.log("Top tracks obj", top_tracks);
+    console.log("API", spotify.getPlaylist(current_playlist_id));
+    const current_playlist = spotify.getPlaylist(current_playlist_id);
+    console.log("current_playlist", current_playlist);
+
+    spotify.getPlaylist(current_playlist_id).then((current_playlist) => {
+        console.log("Playlist object?", current_playlist);
+    });
 
     return (
 
