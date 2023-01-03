@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { resolvePath } from 'react-router-dom'
 import "./Body.css"
 import { useDataLayerValue } from './DataLayer'
@@ -8,14 +8,33 @@ import SongRow from './SongRow'
 
 function Body({ spotify, current_playlist_id }) {
 
-    const [ dispatch, ] = useDataLayerValue();
+    const [ {current_playlist, current_playlist_tracks }, dispatch ] = useDataLayerValue();
+    console.log("CURRENT_PLAYLIST LOG", current_playlist);
+
+    useEffect(() => {
+        if(current_playlist != null) {
+            spotify.getPlaylistTracks(current_playlist_id).then((response) =>
+                dispatch({
+                type: "SET_CURRENT_PLAYLIST_TRACKS",
+                current_playlist_tracks: response,
+                })
+            );
+        }
+    }, [current_playlist_id]);
+    
 
     return (
 
         <div className="body">
             <Header spotify={spotify} />
             <p>{current_playlist_id}</p>
-            
+
+            <div className="body__songs">
+                {current_playlist_tracks?.items.map((item) => (
+                    <SongRow track={item.track}></SongRow>
+                ))}
+            </div>
+
         </div>
 
     )

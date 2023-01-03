@@ -1,0 +1,14 @@
+.songRow {
+    border: 2px solid #BDBDBD;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#playButton {
+    margin-right: 15px;
+}
+
+#songRowAlbum {
+    height: 75px;
+    width: 75px;
+}
