@@ -2,11 +2,12 @@ import React from 'react'
 import "./Sidebar.css"
 import SidebarOption from './SidebarOption'
 import { useDataLayerValue } from './DataLayer';
+import { Link } from 'react-router-dom';
+import Player from './Player';
 
 
 function Sidebar() {
     const [{ playlists }, dispatch] = useDataLayerValue(); // Remember, this is how we pull from the Datalayer
-    console.log("This is what's in playlists in Sidebar.js: ", playlists)
 
     return (
         
@@ -27,7 +28,11 @@ function Sidebar() {
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Playlists</a>
                 <div class="dropdown-menu">
                     {playlists?.items?.map((playlist) => (
-                        <a class="dropdown-item" href="#">{playlist.name}</a>
+                        <span onClick={() => dispatch({type: 'SET_CURRENT_PLAYLIST', current_playlist: playlist,})}>
+                            <a class="dropdown-item" href="#">
+                                {playlist.name}
+                                </a>
+                        </span>
                     ))}
 
                 <div class="dropdown-divider"></div>

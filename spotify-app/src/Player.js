@@ -3,8 +3,13 @@ import './Player.css';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import Footer from "./Footer";
+import { useDataLayerValue } from './DataLayer';
 
 function Player({ spotify }) {
+
+    const [{ current_playlist }, dispatch] = useDataLayerValue(); 
+    console.log("CURPLAY", current_playlist);
+
     return (
         /*
         <div>
@@ -23,7 +28,7 @@ function Player({ spotify }) {
         <div role="main" class="container">
             <h1 class="mt-5">Spotify</h1>
             <Sidebar />
-            <Body spotify={spotify}/>
+            <Body spotify={spotify} current_playlist_id={current_playlist?.id}/>
         </div>
 
         

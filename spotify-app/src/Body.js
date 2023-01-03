@@ -4,7 +4,7 @@ import { useDataLayerValue } from './DataLayer'
 import Header from './Header'
 import SongRow from './SongRow'
 
-function Body({ spotify }) {
+function Body({ spotify, current_playlist_id }) {
 
     const [{ discover_weekly, top_tracks }, dispatch] = useDataLayerValue();
     console.log("Discover weekly object", discover_weekly);
@@ -13,15 +13,9 @@ function Body({ spotify }) {
     return (
 
         <div className="body">
-            <p>I am the body.</p>
             <Header spotify={spotify} />
-            <h2>Your Top Tracks</h2>
-
-            <div className="body__songs">
-                {top_tracks?.items.map((item) => (
-                    <p>{item.name}</p>
-                ))}
-            </div>
+            <p>{current_playlist_id}</p>
+            
 
             
         </div>
@@ -45,4 +39,20 @@ export default Body
 </div>
 
 </div>
+
+---
+
+<div className="body">
+            <p>I am the body.</p>
+            <Header spotify={spotify} />
+            <h2>Your Top Tracks</h2>
+
+            <div className="body__songs">
+                {top_tracks?.items.map((item) => (
+                    <p>{item.name}</p>
+                ))}
+            </div>
+
+            
+        </div>
 */
