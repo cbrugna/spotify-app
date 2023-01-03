@@ -9,6 +9,34 @@ function Sidebar() {
     console.log("This is what's in playlists in Sidebar.js: ", playlists)
 
     return (
+        
+        <ul class="sidebar nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Search</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Library</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Playlists</a>
+                <div class="dropdown-menu">
+                    {playlists?.items?.map((playlist) => (
+                        <a class="dropdown-item" href="#">{playlist.name}</a>
+                    ))}
+
+                <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Idk</a>
+                </div>
+            </li>
+        </ul>
+
+        /*
         <div className="sidebar">
             <img className="sidebar__logo" src={require("./images/spotify-logo.png")} alt="spotify logo"></img>
             <SidebarOption title="Home" Icon="HomeIcon" />
@@ -24,11 +52,8 @@ function Sidebar() {
                 <SidebarOption title={playlist.name} />
             ))}
 
-            <SidebarOption title="Tech"/>
-            <SidebarOption title="Techno"/>
-            <SidebarOption title="House"/>
-
         </div>
+        */
     )
 }
 

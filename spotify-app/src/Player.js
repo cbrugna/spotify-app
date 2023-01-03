@@ -6,6 +6,7 @@ import Footer from "./Footer";
 
 function Player() {
     return (
+        /*
         <div>
             <h1>Welcome to Spotify</h1>
             <div className="player">
@@ -17,6 +18,19 @@ function Player() {
             
             <Footer />
         </div>
+        */
+       <div>
+        <div role="main" class="container">
+            <h1 class="mt-5">Spotify</h1>
+            <Sidebar />
+            <Body />
+        </div>
+
+        
+        <Footer />
+        
+       </div>
+        
     )
 }
 
