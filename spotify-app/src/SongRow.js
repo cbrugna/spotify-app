@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SongRow.css";
 
-function SongRow({ track }) {
+function SongRow({ track, playSong }) {
     return (
         <div className="songRow d-flex flex-row">
 
@@ -12,15 +12,15 @@ function SongRow({ track }) {
             <div class="p-2 my-auto">
                 <p class="fw-bold">{track.name}</p>
             </div>
-            
+
             <div class="p-2 my-auto">
                 <p class="fw-light">
                     {track.artists.map((artist) => artist.name).join(", ")} -{" "} {track.album.name}
                 </p>
             </div>
 
-            <div id="playButton" class="p-2 my-auto ms-auto">
-                <p>P</p>
+            <div id="playButton" onClick={() => playSong(track.id)} class="p-2 my-auto ms-auto">
+                <a href="#">P</a>
             </div>
 
             

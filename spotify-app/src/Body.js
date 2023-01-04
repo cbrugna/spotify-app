@@ -21,6 +21,25 @@ function Body({ spotify, current_playlist_id }) {
             );
         }
     }, [current_playlist_id]);
+
+    const playSong = (id) => {
+        spotify
+            .play({
+                uris: [`spotify:track:${id}`],
+            })
+            .then((res) => {
+                spotify.getMyCurrentPlayingTrack().then((r) => {
+                    dispatch({
+                        type: "SET_ITEM",
+                        item: r.item,
+                    });
+                    dispatch({
+                        type: "SET_PLAYING",
+                        playing: true,
+                    });
+                });
+            });
+    };
     
 
     return (
@@ -30,8 +49,8 @@ function Body({ spotify, current_playlist_id }) {
             <p>{current_playlist_id}</p>
 
             <div className="body__songs">
-                {current_playlist_tracks?.items.map((item) => (
-                    <SongRow track={item.track}></SongRow>
+                {current_playlist_tracks?.items.filter((item, idx) => idx < 10).map((item) => (
+                    <SongRow track={item.track} playSong={playSong}></SongRow>
                 ))}
             </div>
 
