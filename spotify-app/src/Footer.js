@@ -1,6 +1,4 @@
-
-
-import React from 'react'
+import React, { useEffect } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from './DataLayer';
 import "./Footer.css"
@@ -8,6 +6,22 @@ import "./Footer.css"
 function Footer({ spotify }) {
     const [{ item, playing }, dispatch] = useDataLayerValue();
     console.log("ITEMITEMITEM", item);
+
+    useEffect(() => {
+        spotify.getMyCurrentPlaybackState().then((r) => {
+          console.log(r);
+    
+          dispatch({
+            type: "SET_PLAYING",
+            playing: r.is_playing,
+          });
+    
+          dispatch({
+            type: "SET_ITEM",
+            item: r.item,
+          });
+        });
+      }, [spotify]);
 
     const handlePlayPause = () => {
         if (playing) {
@@ -25,6 +39,8 @@ function Footer({ spotify }) {
         }
     }
 
+
+
     return (
 
         <div className="container footer fixed-bottom">
@@ -34,10 +50,6 @@ function Footer({ spotify }) {
                 <div class="col-sm footer__album__cover">
                     <img id="cover" src={(item != null) ? (item?.album.images[0].url) : (require("./images/default-album-cover.png"))} alt="album cover" />
                 </div>
-                
-                <div class="p-2 col-sm my-auto ">
-                    <a href="#">Prev</a>
-                </div>
 
                 <div class="p-2 col-sm my-auto">
                     {playing ? (
@@ -46,12 +58,9 @@ function Footer({ spotify }) {
                         <a href="#" onClick={handlePlayPause}>Play</a>
                     )}
                 </div>
-                
-                <div class="p-2 col-sm my-auto">
-                    <a href="#">Next</a>
-                </div>
-                
 
+                
+            
             </div>
             
         </div>
